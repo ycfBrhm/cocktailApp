@@ -6,9 +6,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
-
-
 import com.example.coctailapp.R;
 import com.example.coctailapp.adapters.CoctailAdapter;
 import com.example.coctailapp.databinding.ActivityMainBinding;
@@ -25,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements CoctailListener {
     private AlcoholicCoctailsViewModel alCocViewModel;
     private List<Coctail> coctails = new ArrayList<>();
     private CoctailAdapter coctailAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements CoctailListener {
     }
 
     private void getAlcohlicCoctails(){
-
         activityMainBinding.setIsLoading(true);
         alCocViewModel.getAlcoholicCoctails("Alcoholic").observe(this, alcoholicCoctailsResponse ->{
             activityMainBinding.setIsLoading(false);
@@ -53,37 +50,21 @@ public class MainActivity extends AppCompatActivity implements CoctailListener {
                     for (int i=0;i<coctails.size();i++){
                         coctailAdapter.bindViewModel(coctails.get(i));
                     }
-
                 }
 
             }
         });
-
         alCocViewModel.getAlcoholicCoctails("Non_Alcoholic").observe(this, alcoholicCoctailsResponse ->{
-            activityMainBinding.setIsLoading(false);
             if (alcoholicCoctailsResponse.getCoctails() != null){
                 if (alcoholicCoctailsResponse.getCoctails() != null){
                     List<Coctail> NAlCoctails=alcoholicCoctailsResponse.getCoctails();
                     for (int i=0;i< NAlCoctails.size();i++){
                         coctailAdapter.bindViewModel(NAlCoctails.get(i));
                     }
-
                 }
 
             }
         });
-
-
-        /*
-        alCocViewModel.getAlcoholicCoctails("margarita").observe(this, coctailResponse ->
-                Toast.makeText(
-                        getApplicationContext(),
-                        "Drinks: "+coctailResponse.getCoctails().get(0).getId()+coctailResponse.getCoctails().get(0).getName(),
-                        Toast.LENGTH_SHORT
-                ).show()
-        );
-
-         */
     }
 
     @Override

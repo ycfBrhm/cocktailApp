@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.coctailapp.R;
@@ -22,7 +23,6 @@ import java.util.List;
 public class CoctailAdapter extends RecyclerView.Adapter<CoctailAdapter.CoctailViewHolder>{
 
     private List<Coctail> coctails;
-    private LayoutInflater layoutInflater;
     private CoctailListener coctailListener;
 
     public CoctailAdapter(List<Coctail> coctails, CoctailListener coctailListener) {
@@ -34,13 +34,10 @@ public class CoctailAdapter extends RecyclerView.Adapter<CoctailAdapter.CoctailV
     @NonNull
     @Override
     public CoctailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(layoutInflater == null){
-            layoutInflater= LayoutInflater.from(parent.getContext());
-        }
-
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_container_coctail, parent, false);
-        return new CoctailViewHolder(v);
+        ItemContainerCoctailBinding employeeListItemBinding =
+                DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                        R.layout.item_container_coctail, parent, false);
+        return new CoctailViewHolder(employeeListItemBinding);
     }
 
     @Override
@@ -61,26 +58,17 @@ public class CoctailAdapter extends RecyclerView.Adapter<CoctailAdapter.CoctailV
     }
 
     class CoctailViewHolder extends RecyclerView.ViewHolder{
-
-        private RoundedImageView imageCoctail;
-        private TextView nameCoctail;
-        private TextView ingredientsCoctail;
-
         private ItemContainerCoctailBinding itemContainerCoctailBinding;
 
-        public CoctailViewHolder (View view){
-          super(view);
-            imageCoctail=view.findViewById(R.id.imageCoctail);
-            nameCoctail=view.findViewById(R.id.nameCoctail);
-            ingredientsCoctail=view.findViewById(R.id.ingredientsCoctail);
+        public CoctailViewHolder (ItemContainerCoctailBinding itemContainerCoctailBinding){
+          super(itemContainerCoctailBinding.getRoot());
+          this.itemContainerCoctailBinding=itemContainerCoctailBinding;
 
         }
 
-        public  void bindCoctail(Coctail coctail) {
 
-            BindingAdapters.setImageURL(imageCoctail, coctail.getImage());
-            nameCoctail.setText(coctail.getName());
-            ingredientsCoctail.setText(coctail.getName());
+        public  void bindCoctail(Coctail coctail) {
+            itemContainerCoctailBinding.setCoctail(coctail);
             itemContainerCoctailBinding.getRoot().setOnClickListener(view -> coctailListener.onCoctailClicked(coctail));
         }
     }

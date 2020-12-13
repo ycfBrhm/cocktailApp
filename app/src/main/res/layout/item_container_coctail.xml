@@ -32,6 +32,7 @@
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_100sdp"
             android:scaleType="centerCrop"
+            android:imageURL="@{Coctail.image}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:riv_corner_radius="@dimen/_45sdp" />
@@ -48,6 +49,7 @@
             android:paddingTop="@dimen/_8sdp"
             android:textColor="@color/colorTextPrimary"
             android:textSize="@dimen/_13ssp"
+            android:text="@{Coctail.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imageCoctail"
             app:layout_constraintTop_toTopOf="@id/imageCoctail" />
@@ -59,7 +61,7 @@
             android:layout_marginTop="@dimen/_3sdp"
             android:fontFamily="sans-serif"
             android:includeFontPadding="false"
-
+            android:text="@{Coctail.name}"
             android:textColor="@color/colorTextOther"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="@id/nameCoctail"
