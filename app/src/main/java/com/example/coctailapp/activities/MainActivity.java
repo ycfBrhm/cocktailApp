@@ -2,76 +2,54 @@ package com.example.coctailapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
-
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+
 import com.example.coctailapp.R;
-import com.example.coctailapp.adapters.CoctailAdapter;
-import com.example.coctailapp.databinding.ActivityMainBinding;
-import com.example.coctailapp.listeners.CoctailListener;
-import com.example.coctailapp.models.Coctail;
-import com.example.coctailapp.viewmodels.AlcoholicCoctailsViewModel;
+import com.example.coctailapp.fragments.MainGridFragment;
+import com.example.coctailapp.fragments.MainListFragment;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MainActivity extends AppCompatActivity  {
 
-public class MainActivity extends AppCompatActivity implements CoctailListener {
-
-    private ActivityMainBinding activityMainBinding;
-    private AlcoholicCoctailsViewModel alCocViewModel;
-    private List<Coctail> coctails = new ArrayList<>();
-    private CoctailAdapter coctailAdapter;
-
-
+    private ImageButton btnTypeGrid,btnTypeList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        doInitialization();
-
-    }
-
-    private void doInitialization(){
-        activityMainBinding.coctailsRecyclerView.setHasFixedSize(true);
-        alCocViewModel = new ViewModelProvider(this).get(AlcoholicCoctailsViewModel.class);
-        coctailAdapter = new CoctailAdapter(coctails, this);
-        activityMainBinding.coctailsRecyclerView.setAdapter(coctailAdapter);
-        getAlcohlicCoctails();
-    }
-
-    private void getAlcohlicCoctails(){
-        activityMainBinding.setIsLoading(true);
-        alCocViewModel.getAlcoholicCoctails("Alcoholic").observe(this, alcoholicCoctailsResponse ->{
-            activityMainBinding.setIsLoading(false);
-            if (alcoholicCoctailsResponse.getCoctails() != null){
-                if (alcoholicCoctailsResponse.getCoctails() != null){
-                    List<Coctail> coctails=alcoholicCoctailsResponse.getCoctails();
-                    for (int i=0;i<coctails.size();i++){
-                        coctailAdapter.bindViewModel(coctails.get(i));
-                    }
-                }
-
+        setContentView(R.layout.activity_main);
+        btnTypeGrid=findViewById(R.id.btnImageTypeGrid);
+        btnTypeList=findViewById(R.id.btnImageTypeList);
+        btnTypeGrid.setVisibility(View.VISIBLE);
+        btnTypeList.setVisibility(View.GONE);
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.fragment_container_view, MainListFragment.class, null)
+                .commit();
+        btnTypeList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.fragment_container_view, MainListFragment.class, null)
+                        .commit();
+                btnTypeList.setVisibility(View.GONE);
+                btnTypeGrid.setVisibility(View.VISIBLE);
             }
         });
-        alCocViewModel.getAlcoholicCoctails("Non_Alcoholic").observe(this, alcoholicCoctailsResponse ->{
-            if (alcoholicCoctailsResponse.getCoctails() != null){
-                if (alcoholicCoctailsResponse.getCoctails() != null){
-                    List<Coctail> NAlCoctails=alcoholicCoctailsResponse.getCoctails();
-                    for (int i=0;i< NAlCoctails.size();i++){
-                        coctailAdapter.bindViewModel(NAlCoctails.get(i));
-                    }
-                }
-
+        btnTypeGrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.fragment_container_view, MainGridFragment.class, null)
+                        .commit();
+                btnTypeList.setVisibility(View.VISIBLE);
+                btnTypeGrid.setVisibility(View.GONE);
             }
         });
+
     }
 
-    @Override
-    public void onCoctailClicked(Coctail coctail) {
-        Intent intent = new Intent(getApplicationContext(), DetailCoctailActivity.class);
-        intent.putExtra("id", coctail.getId());
-        intent.putExtra("name", coctail.getName());
-        startActivity(intent);
-    }
+
+
 }

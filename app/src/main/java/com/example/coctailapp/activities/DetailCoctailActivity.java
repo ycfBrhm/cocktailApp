@@ -17,6 +17,7 @@ public class DetailCoctailActivity extends AppCompatActivity {
 
     private ActivityDetailCoctailBinding activityDetailCoctailBinding;
     private DetailsCoctailViewModel detailsCoctailViewModel;
+    public static final String ID_DETAIL_COCkTAIL_ACTIVITY="com.example.coctailapp.activities.ID_DETAIL_COCkTAIL_ACTIVITY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +32,9 @@ public class DetailCoctailActivity extends AppCompatActivity {
     }
 
 
-
     private void getDetailsCoctail(){
         activityDetailCoctailBinding.setIsLoading(true);
-        String coctailId = String.valueOf(getIntent().getIntExtra("id", -1));
+        String coctailId = String.valueOf(getIntent().getIntExtra(ID_DETAIL_COCkTAIL_ACTIVITY, -1));
         detailsCoctailViewModel.getDetailsCoctail(coctailId).observe(
                 this, detailCoctailResponse -> {
                     activityDetailCoctailBinding.setIsLoading(false);

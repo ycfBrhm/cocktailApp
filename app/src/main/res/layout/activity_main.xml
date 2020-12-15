@@ -7,7 +7,7 @@
         <variable
             name="isLoading"
             type="Boolean" />
-        
+
         <import type="android.view.View"/>
 
     </data>
@@ -43,17 +43,28 @@
                 android:textColor="@color/colorTextIcons"
                 android:textSize="@dimen/_14ssp"/>
 
-            <ImageView
-                android:id="@+id/imageMyBar"
+            <ImageButton
+                android:id="@+id/btnImageTypeGrid"
                 android:layout_width="@dimen/_24sdp"
                 android:layout_height="@dimen/_24sdp"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:contentDescription="@string/app_name"
                 android:padding="@dimen/_2sdp"
-                android:src="@drawable/ic_my_bar"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:src="@drawable/ic_grid"
                 app:tint="@color/colorTextIcons"/>
-
+            <ImageButton
+                android:id="@+id/btnImageTypeList"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/_2sdp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:src="@drawable/ic_list"
+                app:tint="@color/colorTextIcons"/>
             <ImageView
                 android:id="@+id/imageSearch"
                 android:layout_width="@dimen/_24sdp"
@@ -62,7 +73,7 @@
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:contentDescription="@string/app_name"
                 android:padding="@dimen/_2sdp"
-                android:src="@drawable/ic_search"
+                android:src="@drawable/ic_filter"
                 app:tint="@color/colorTextIcons"/>
 
         </LinearLayout>
@@ -74,19 +85,20 @@
             android:clipToPadding="false"
             android:orientation="vertical"
             android:padding="@dimen/_4sdp"
-
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutHeader"/>
 
-        <ProgressBar
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:visibility="@{isLoading ? View.VISIBLE : View.GONE, default=gone}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?actionBarSize"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutHeader"/>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
