@@ -8,6 +8,34 @@
             name="isLoading"
             type="Boolean" />
 
+        <variable
+            name="CocktailImageURL"
+            type="String"/>
+
+        <variable
+            name="cocktailName"
+            type="String"/>
+
+        <variable
+            name="cocktailCategory"
+            type="String"/>
+
+        <variable
+            name="cocktailAlcoholic"
+            type="String"/>
+
+        <variable
+            name="cocktailGlass"
+            type="String"/>
+
+        <variable
+            name="cocktailDateModified"
+            type="String"/>
+
+        <variable
+            name="instructions"
+            type="String" />
+
         <import type="android.view.View"/>
 
     </data>
@@ -19,15 +47,169 @@
         tools:context=".activities.DetailCoctailActivity">
 
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/sliderViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+
+            tools:ignore="MissingConstraints" />
+
+        <View
+            android:id="@+id/viewFadingEdge"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/background_fading_edge"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/sliderViewPager"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+        <ImageView
+            android:id="@+id/imageBack"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/background_back_button"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorTextIcons" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/imageCoctail"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:imageURL="@{CocktailImageURL}"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/sliderViewPager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sliderViewPager"
+            app:riv_corner_radius="@dimen/_6sdp" />
+
+
+        <TextView
+            android:id = "@+id/textName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-bold"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@{cocktailName}"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="@dimen/_14ssp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageCoctail"
+            app:layout_constraintTop_toBottomOf="@id/sliderViewPager" />
+
+
+
+        <TextView
+            android:id="@+id/textCocktailCategory"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text='@{"Category : " + cocktailCategory}'
+            android:textColor="@android:color/holo_green_light"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/textName"
+            app:layout_constraintStart_toStartOf="@id/textName"
+            app:layout_constraintTop_toBottomOf="@id/textName"
+            />
+
+        <TextView
+            android:id="@+id/textCocktailAlcoholic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text='@{"Alcohol : " + cocktailAlcoholic}'
+            android:textColor="@color/colorTextOther"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/textName"
+            app:layout_constraintStart_toStartOf="@id/textName"
+            app:layout_constraintTop_toBottomOf="@id/textCocktailCategory" />
+
+
+        <TextView
+            android:id="@+id/textCocktailDateModified"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text= "@{cocktailDateModified}"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/textName"
+            app:layout_constraintStart_toStartOf="@id/textName"
+            app:layout_constraintTop_toBottomOf="@id/textCocktailAlcoholic" />
+
+        <TextView
+            android:id="@+id/textInstructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:ellipsize="end"
+            android:textColor= "@color/colorTextPrimary"
+            android:fontFamily="sans-serif-regular"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="@dimen/_2sdp"
+            android:maxLines="4"
+            android:text="@{instructions}"
+            app:layout_constraintTop_toBottomOf="@id/imageCoctail" />
+
+        <TextView
+            android:id="@+id/textReadMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="sans-serif-regular"
+            android:text="@string/read_more"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/textInstructions"
+            app:layout_constraintTop_toBottomOf="@id/textInstructions"
+            />
+
         <ProgressBar
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
+
             android:visibility="@{isLoading ? View.VISIBLE : View.GONE, default=gone}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

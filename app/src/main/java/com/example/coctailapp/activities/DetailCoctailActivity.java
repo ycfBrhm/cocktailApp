@@ -1,15 +1,20 @@
 package com.example.coctailapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.text.HtmlCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Toast;
 
 
 import com.example.coctailapp.R;
+import com.example.coctailapp.adapters.ImageSliderAdapter;
 import com.example.coctailapp.databinding.ActivityDetailCoctailBinding;
+import com.example.coctailapp.responses.DetailCoctailResponse;
 import com.example.coctailapp.viewmodels.AlcoholicCoctailsViewModel;
 import com.example.coctailapp.viewmodels.DetailsCoctailViewModel;
 
@@ -28,18 +33,105 @@ public class DetailCoctailActivity extends AppCompatActivity {
 
     private void doInitializeation(){
         detailsCoctailViewModel = new ViewModelProvider(this).get(DetailsCoctailViewModel.class);
+        activityDetailCoctailBinding.imageBack.setOnClickListener(v -> onBackPressed());
         getDetailsCoctail();
     }
 
 
     private void getDetailsCoctail(){
         activityDetailCoctailBinding.setIsLoading(true);
+        String[] sliderImages = new String[1];
         String coctailId = String.valueOf(getIntent().getIntExtra(ID_DETAIL_COCkTAIL_ACTIVITY, -1));
         detailsCoctailViewModel.getDetailsCoctail(coctailId).observe(
                 this, detailCoctailResponse -> {
                     activityDetailCoctailBinding.setIsLoading(false);
-                    Toast.makeText(getApplicationContext(), detailCoctailResponse.getDetailsCoctail().getDate(), Toast.LENGTH_SHORT).show();
+                    if (detailCoctailResponse.getDetailsCoctail()!= null){
+                        if (detailCoctailResponse.getDetailsCoctail().getImage() != null){
+                            sliderImages[0] = detailCoctailResponse.getDetailsCoctail().getImage();
+                            loadImageSlider(sliderImages);
+                        }
+
+                        activityDetailCoctailBinding.setCocktailImageURL(
+                                detailCoctailResponse.getDetailsCoctail().getImage()
+                        );
+                        activityDetailCoctailBinding.imageCoctail.setVisibility(View.VISIBLE);
+
+                        activityDetailCoctailBinding.setInstructions(
+                                String.valueOf(
+                                        HtmlCompat.fromHtml(
+                                                detailCoctailResponse.getDetailsCoctail().getInstruction(),
+                                                HtmlCompat.FROM_HTML_MODE_LEGACY
+                                        )
+                                )
+                        );
+                        activityDetailCoctailBinding.textInstructions.setVisibility(View.VISIBLE);
+                        activityDetailCoctailBinding.textReadMore.setVisibility(View.VISIBLE);
+                        activityDetailCoctailBinding.textReadMore.setOnClickListener(v -> {
+                            if(activityDetailCoctailBinding.textReadMore.getText().toString().equals("Read More")) {
+                                activityDetailCoctailBinding.textInstructions.setMaxLines(Integer.MAX_VALUE);
+                                activityDetailCoctailBinding.textInstructions.setEllipsize(null);
+                                activityDetailCoctailBinding.textReadMore.setText(R.string.read_less);
+                            }else{
+                                activityDetailCoctailBinding.textInstructions.setMaxLines(4);
+                                activityDetailCoctailBinding.textInstructions.setEllipsize(TextUtils.TruncateAt.END);
+                                activityDetailCoctailBinding.textReadMore.setText(R.string.read_more);
+                            }
+                        });
+
+
+
+
+                        // sous titre
+                        if(detailCoctailResponse.getDetailsCoctail().getDate() != null){
+                            activityDetailCoctailBinding.setCocktailDateModified(
+                                    detailCoctailResponse.getDetailsCoctail().getDate()
+                            );
+                            activityDetailCoctailBinding.textCocktailDateModified.setVisibility(View.VISIBLE);
+                        }
+
+
+                        if(detailCoctailResponse.getDetailsCoctail().getName() != null){
+                            activityDetailCoctailBinding.setCocktailName(
+                                    detailCoctailResponse.getDetailsCoctail().getName()
+                            );
+                            activityDetailCoctailBinding.textName.setVisibility(View.VISIBLE);
+                        }
+
+
+
+                        if(detailCoctailResponse.getDetailsCoctail().getAlcoholic() != null){
+                            activityDetailCoctailBinding.setCocktailAlcoholic(
+                                    detailCoctailResponse.getDetailsCoctail().getAlcoholic()
+                            );
+                            activityDetailCoctailBinding.textCocktailAlcoholic.setVisibility(View.VISIBLE);
+                        }
+
+                        if(detailCoctailResponse.getDetailsCoctail().getCategory() != null){
+                            activityDetailCoctailBinding.setCocktailCategory(
+                                    detailCoctailResponse.getDetailsCoctail().getCategory()
+                            );
+                            activityDetailCoctailBinding.textCocktailCategory.setVisibility(View.VISIBLE);
+                        }
+
+                        if(detailCoctailResponse.getDetailsCoctail().getGlass() != null){
+                            activityDetailCoctailBinding.setCocktailGlass(
+                                    detailCoctailResponse.getDetailsCoctail().getGlass()
+                            );
+                        }
+
+
+                    }
                 }
         );
     }
+
+    private void loadImageSlider(String[] sliderImages){
+        activityDetailCoctailBinding.sliderViewPager.setOffscreenPageLimit(1);
+        activityDetailCoctailBinding.sliderViewPager.setAdapter(new ImageSliderAdapter(sliderImages));
+        activityDetailCoctailBinding.sliderViewPager.setVisibility(View.VISIBLE);
+        activityDetailCoctailBinding.viewFadingEdge.setVisibility(View.VISIBLE);
+
+    }
+
+
 }

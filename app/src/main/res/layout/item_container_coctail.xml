@@ -35,7 +35,7 @@
             android:imageURL="@{Coctail.image}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:riv_corner_radius="@dimen/_45sdp" />
+            app:riv_corner_radius="@dimen/_15sdp" />
 
         <TextView
             android:id="@+id/nameCoctail"
