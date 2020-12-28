@@ -47,6 +47,9 @@ public class DetailCoctail {
     @SerializedName("strIngredient7")
     private String ingredient7;
 
+    @SerializedName("strIngredient8")
+    private String ingredient8;
+
     @SerializedName("strMeasure1")
     private String mesure1;
 
@@ -68,6 +71,9 @@ public class DetailCoctail {
 
     @SerializedName("strMeasure7")
     private String mesure7;
+
+    @SerializedName("strMeasure8")
+    private String mesure8;
 
     @SerializedName("dateModified")
     private String date;
@@ -129,6 +135,10 @@ public class DetailCoctail {
         return ingredient7;
     }
 
+    public String getIngredient8() {
+        return ingredient8;
+    }
+
     public String getMesure1() {
         return mesure1;
     }
@@ -155,6 +165,10 @@ public class DetailCoctail {
 
     public String getMesure7() {
         return mesure7;
+    }
+
+    public String getMesure8() {
+        return mesure8;
     }
 
     public String getDate() {

@@ -72,7 +72,7 @@ public class DetailCoctailActivity extends AppCompatActivity {
                                 activityDetailCoctailBinding.textInstructions.setEllipsize(null);
                                 activityDetailCoctailBinding.textReadMore.setText(R.string.read_less);
                             }else{
-                                activityDetailCoctailBinding.textInstructions.setMaxLines(4);
+                                activityDetailCoctailBinding.textInstructions.setMaxLines(2);
                                 activityDetailCoctailBinding.textInstructions.setEllipsize(TextUtils.TruncateAt.END);
                                 activityDetailCoctailBinding.textReadMore.setText(R.string.read_more);
                             }
@@ -117,8 +117,91 @@ public class DetailCoctailActivity extends AppCompatActivity {
                             activityDetailCoctailBinding.setCocktailGlass(
                                     detailCoctailResponse.getDetailsCoctail().getGlass()
                             );
+                            activityDetailCoctailBinding.textCocktailGlass.setVisibility(View.VISIBLE);
                         }
 
+                        // Ingredients
+                        if(detailCoctailResponse.getDetailsCoctail().getIngredient1() != null){
+                            activityDetailCoctailBinding.setIng1(
+                                    detailCoctailResponse.getDetailsCoctail().getIngredient1()
+                            );
+                            activityDetailCoctailBinding.setOz1(
+                                    detailCoctailResponse.getDetailsCoctail().getMesure1()
+                            );
+                            activityDetailCoctailBinding.textIng1.setVisibility(View.VISIBLE);
+                        }
+
+                        if(detailCoctailResponse.getDetailsCoctail().getIngredient2() != null){
+                            activityDetailCoctailBinding.setIng2(
+                                    detailCoctailResponse.getDetailsCoctail().getIngredient2()
+                            );
+                            activityDetailCoctailBinding.setOz2(
+                                    detailCoctailResponse.getDetailsCoctail().getMesure2()
+                            );
+                            activityDetailCoctailBinding.textIng2.setVisibility(View.VISIBLE);
+                        }
+
+                        if(detailCoctailResponse.getDetailsCoctail().getIngredient3() != null ){
+                            activityDetailCoctailBinding.setIng3(
+                                    detailCoctailResponse.getDetailsCoctail().getIngredient3()
+                            );
+                            activityDetailCoctailBinding.setOz3(
+                                    detailCoctailResponse.getDetailsCoctail().getMesure3()
+                            );
+                            activityDetailCoctailBinding.textIng3.setVisibility(View.VISIBLE);
+                        }
+
+
+                        if(detailCoctailResponse.getDetailsCoctail().getIngredient4() != null ){
+                            activityDetailCoctailBinding.setIng4(
+                                    detailCoctailResponse.getDetailsCoctail().getIngredient4()
+                            );
+                            activityDetailCoctailBinding.setOz4(
+                                    detailCoctailResponse.getDetailsCoctail().getMesure4()
+                            );
+                            activityDetailCoctailBinding.textIng4.setVisibility(View.VISIBLE);
+                        }
+
+                        if(detailCoctailResponse.getDetailsCoctail().getIngredient5() != null){
+                            activityDetailCoctailBinding.setIng5(
+                                    detailCoctailResponse.getDetailsCoctail().getIngredient5()
+                            );
+                            activityDetailCoctailBinding.setOz5(
+                                    detailCoctailResponse.getDetailsCoctail().getMesure5()
+                            );
+                            activityDetailCoctailBinding.textIng5.setVisibility(View.VISIBLE);
+                        }
+
+                        if(detailCoctailResponse.getDetailsCoctail().getIngredient6() != null ){
+                            activityDetailCoctailBinding.setIng6(
+                                    detailCoctailResponse.getDetailsCoctail().getIngredient6()
+                            );
+                            activityDetailCoctailBinding.setOz6(
+                                    detailCoctailResponse.getDetailsCoctail().getMesure6()
+                            );
+                            activityDetailCoctailBinding.textIng6.setVisibility(View.VISIBLE);
+                        }
+
+
+                        if(detailCoctailResponse.getDetailsCoctail().getIngredient7() != null ){
+                            activityDetailCoctailBinding.setIng7(
+                                    detailCoctailResponse.getDetailsCoctail().getIngredient7()
+                            );
+                            activityDetailCoctailBinding.setOz7(
+                                    detailCoctailResponse.getDetailsCoctail().getMesure7()
+                            );
+                            activityDetailCoctailBinding.textIng7.setVisibility(View.VISIBLE);
+                        }
+
+                        if(detailCoctailResponse.getDetailsCoctail().getIngredient8() != null  ){
+                            activityDetailCoctailBinding.setIng8(
+                                    detailCoctailResponse.getDetailsCoctail().getIngredient8()
+                            );
+                            activityDetailCoctailBinding.setOz8(
+                                    detailCoctailResponse.getDetailsCoctail().getMesure8()
+                            );
+                            activityDetailCoctailBinding.textIng8.setVisibility(View.VISIBLE);
+                        }
 
                     }
                 }

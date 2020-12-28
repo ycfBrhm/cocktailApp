@@ -36,6 +36,56 @@
             name="instructions"
             type="String" />
 
+        <variable
+            name="ing1"
+            type="String" />
+        <variable
+            name="oz1"
+            type="String" />
+
+        <variable
+            name="ing2"
+            type="String" />
+        <variable
+            name="oz2"
+            type="String" />
+        <variable
+            name="ing3"
+            type="String" />
+        <variable
+            name="oz3"
+            type="String" />
+        <variable
+            name="ing4"
+            type="String" />
+        <variable
+            name="oz4"
+            type="String" />
+        <variable
+            name="ing5"
+            type="String" />
+        <variable
+            name="oz5"
+            type="String" />
+        <variable
+            name="ing6"
+            type="String" />
+        <variable
+            name="oz6"
+            type="String" />
+        <variable
+            name="ing7"
+            type="String" />
+        <variable
+            name="oz7"
+            type="String" />
+        <variable
+            name="ing8"
+            type="String" />
+        <variable
+            name="oz8"
+            type="String" />
+
         <import type="android.view.View"/>
 
     </data>
@@ -46,160 +96,361 @@
         android:background="@color/colorPrimary"
         tools:context=".activities.DetailCoctailActivity">
 
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/sliderViewPager"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="match_parent">
 
-            tools:ignore="MissingConstraints" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/viewFadingEdge"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:background="@drawable/background_fading_edge"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/sliderViewPager"
-            app:layout_constraintEnd_toEndOf="parent" />
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/sliderViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent"
 
+                    tools:ignore="MissingConstraints" />
 
-
-        <ImageView
-            android:id="@+id/imageBack"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/background_back_button"
-            android:contentDescription="@string/app_name"
-            android:padding="@dimen/_3sdp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/colorTextIcons" />
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/imageCoctail"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:imageURL="@{CocktailImageURL}"
-            android:scaleType="centerCrop"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/sliderViewPager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sliderViewPager"
-            app:riv_corner_radius="@dimen/_6sdp" />
-
-
-        <TextView
-            android:id = "@+id/textName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-bold"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text="@{cocktailName}"
-            android:textColor="@color/colorTextIcons"
-            android:textSize="@dimen/_14ssp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/imageCoctail"
-            app:layout_constraintTop_toBottomOf="@id/sliderViewPager" />
+                <View
+                    android:id="@+id/viewFadingEdge"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/background_fading_edge"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/sliderViewPager"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
 
 
-        <TextView
-            android:id="@+id/textCocktailCategory"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-regular"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text='@{"Category : " + cocktailCategory}'
-            android:textColor="@android:color/holo_green_light"
-            android:textSize="@dimen/_12ssp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/textName"
-            app:layout_constraintStart_toStartOf="@id/textName"
-            app:layout_constraintTop_toBottomOf="@id/textName"
-            />
+                <ImageView
+                    android:id="@+id/imageBack"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/background_back_button"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/_3sdp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/colorTextIcons" />
 
-        <TextView
-            android:id="@+id/textCocktailAlcoholic"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-regular"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text='@{"Alcohol : " + cocktailAlcoholic}'
-            android:textColor="@color/colorTextOther"
-            android:textSize="@dimen/_12ssp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/textName"
-            app:layout_constraintStart_toStartOf="@id/textName"
-            app:layout_constraintTop_toBottomOf="@id/textCocktailCategory" />
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/imageCoctail"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:imageURL="@{CocktailImageURL}"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/sliderViewPager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sliderViewPager"
+                    app:riv_corner_radius="@dimen/_6sdp" />
 
 
-        <TextView
-            android:id="@+id/textCocktailDateModified"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:ellipsize="end"
-            android:fontFamily="sans-serif-regular"
-            android:includeFontPadding="false"
-            android:maxLines="1"
-            android:text= "@{cocktailDateModified}"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="@dimen/_12ssp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@id/textName"
-            app:layout_constraintStart_toStartOf="@id/textName"
-            app:layout_constraintTop_toBottomOf="@id/textCocktailAlcoholic" />
+                <TextView
+                    android:id = "@+id/textName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-bold"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{cocktailName}"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="@dimen/_14ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imageCoctail"
+                    app:layout_constraintTop_toBottomOf="@id/sliderViewPager" />
 
-        <TextView
-            android:id="@+id/textInstructions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_8sdp"
-            android:ellipsize="end"
-            android:textColor= "@color/colorTextPrimary"
-            android:fontFamily="sans-serif-regular"
-            android:includeFontPadding="false"
-            android:lineSpacingExtra="@dimen/_2sdp"
-            android:maxLines="4"
-            android:text="@{instructions}"
-            app:layout_constraintTop_toBottomOf="@id/imageCoctail" />
 
-        <TextView
-            android:id="@+id/textReadMore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:fontFamily="sans-serif-regular"
-            android:text="@string/read_more"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/_12ssp"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@id/textInstructions"
-            app:layout_constraintTop_toBottomOf="@id/textInstructions"
-            />
+
+                <TextView
+                    android:id="@+id/textCocktailCategory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"Category : " + cocktailCategory}'
+                    android:textColor="@android:color/holo_green_light"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/textName"
+                    app:layout_constraintStart_toStartOf="@id/textName"
+                    app:layout_constraintTop_toBottomOf="@id/textName"
+                    />
+
+                <TextView
+                    android:id="@+id/textCocktailAlcoholic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"Alcohol : " + cocktailAlcoholic}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/textName"
+                    app:layout_constraintStart_toStartOf="@id/textName"
+                    app:layout_constraintTop_toBottomOf="@id/textCocktailCategory" />
+
+
+                <TextView
+                    android:id="@+id/textCocktailGlass"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{cocktailGlass}"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/textName"
+                    app:layout_constraintStart_toStartOf="@id/textName"
+                    app:layout_constraintTop_toBottomOf="@id/textCocktailAlcoholic" />
+
+                <TextView
+                    android:id="@+id/textCocktailDateModified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text= "@{cocktailDateModified}"
+                    android:textColor="@color/colorTextSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/imageCoctail"
+                    app:layout_constraintStart_toStartOf="@id/imageCoctail"
+                    app:layout_constraintTop_toBottomOf="@id/imageCoctail" />
+
+                <TextView
+                    android:id="@+id/textInstructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:textColor= "@color/colorTextPrimary"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:maxLines="2"
+                    android:text="@{instructions}"
+                    app:layout_constraintTop_toBottomOf="@id/textCocktailDateModified" />
+
+                <TextView
+                    android:id="@+id/textReadMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:fontFamily="sans-serif-regular"
+                    android:text="@string/read_more"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@id/textInstructions"
+                    app:layout_constraintTop_toBottomOf="@id/textInstructions" />
+
+                <View
+                    android:id="@+id/viewDivider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@color/colorTextSecondary"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@id/textReadMore" />
+
+
+
+
+                <TextView
+                    android:id="@+id/textIng1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"     -   "+ ing1 + "         " + oz1}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider1"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/textIng2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"     -   "+ ing2 + "         " + oz2}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+
+                    app:layout_constraintTop_toBottomOf="@id/textIng1"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/textIng3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"     -   "+ ing3 + "         " + oz3}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+
+                    app:layout_constraintTop_toBottomOf="@id/textIng2"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/textIng4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"     -   "+ ing4 + "         " + oz4}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+
+                    app:layout_constraintTop_toBottomOf="@id/textIng3"
+                    tools:ignore="MissingConstraints" />
+
+
+                <TextView
+                    android:id="@+id/textIng5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"     -   "+ ing5 + "         " + oz5}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+
+                    app:layout_constraintTop_toBottomOf="@id/textIng4"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/textIng6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"     -   "+ ing6 + "         " + oz6}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+
+                    app:layout_constraintTop_toBottomOf="@id/textIng5"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/textIng7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"     -   "+ ing7 + "         " + oz7}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+
+                    app:layout_constraintTop_toBottomOf="@id/textIng6"
+                    tools:ignore="MissingConstraints" />
+
+
+                <TextView
+                    android:id="@+id/textIng8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"     -   "+ ing8 + "         " + oz8}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+
+                    app:layout_constraintTop_toBottomOf="@id/textIng7"
+                    tools:ignore="MissingConstraints" />
+
+
+
+
+                <View
+                    android:id="@+id/viewDivider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@color/colorTextSecondary"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@id/textIng8" />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
+
+
+
 
         <ProgressBar
             android:layout_width="@dimen/_25sdp"
