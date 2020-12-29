@@ -14,7 +14,8 @@
         android:theme="@style/appTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".activities.DetailCoctailActivity"></activity>
+        <activity android:name=".activities.TryedListActivity"></activity>
+        <activity android:name=".activities.DetailCoctailActivity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

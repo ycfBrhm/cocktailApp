@@ -144,9 +144,11 @@ public class DetailCoctailActivity extends AppCompatActivity {
                             activityDetailCoctailBinding.setIng2(
                                     detailCoctailResponse.getDetailsCoctail().getIngredient2()
                             );
+
                             activityDetailCoctailBinding.setOz2(
                                     detailCoctailResponse.getDetailsCoctail().getMesure2()
                             );
+
                             activityDetailCoctailBinding.textIng2.setVisibility(View.VISIBLE);
                         }
 
