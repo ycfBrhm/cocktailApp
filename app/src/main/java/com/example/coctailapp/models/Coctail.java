@@ -1,9 +1,17 @@
 package com.example.coctailapp.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Coctail {
+import java.io.Serializable;
 
+
+@Entity(tableName = "coctails")
+public class Coctail implements Serializable {
+
+    @PrimaryKey
     @SerializedName("idDrink")
     private int id;
 
@@ -27,4 +35,15 @@ public class Coctail {
     }
 
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

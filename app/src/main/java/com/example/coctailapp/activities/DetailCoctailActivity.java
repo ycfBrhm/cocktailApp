@@ -203,6 +203,10 @@ public class DetailCoctailActivity extends AppCompatActivity {
                             activityDetailCoctailBinding.textIng8.setVisibility(View.VISIBLE);
                         }
 
+                        // fin ingredients bind
+                        //activityDetailCoctailBinding.add(detailsCoctailViewModel.addToTryedList(coctail))
+
+
                     }
                 }
         );
