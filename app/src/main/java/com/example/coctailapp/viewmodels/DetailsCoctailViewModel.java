@@ -23,7 +23,6 @@ public class DetailsCoctailViewModel extends AndroidViewModel {
 
     public DetailsCoctailViewModel(@NonNull Application application) {
         super(application);
-
         deatilsCoctailRepository = new DeatilsCoctailRepository();
         coctailDatabase = CoctailDatabase.getCoctailDatabase(application);
     }

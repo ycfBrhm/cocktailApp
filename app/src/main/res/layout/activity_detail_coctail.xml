@@ -97,6 +97,7 @@
         tools:context=".activities.DetailCoctailActivity">
 
         <ScrollView
+            android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -124,13 +125,12 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
 
-
                 <ImageView
                     android:id="@+id/imageBack"
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/background_back_button"
                     android:contentDescription="@string/app_name"
@@ -144,8 +144,8 @@
                     android:id="@+id/imageCoctail"
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="@dimen/_150sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
                     android:imageURL="@{CocktailImageURL}"
                     android:scaleType="centerCrop"
                     android:visibility="gone"
@@ -156,7 +156,7 @@
 
 
                 <TextView
-                    android:id = "@+id/textName"
+                    android:id="@+id/textName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
@@ -174,7 +174,6 @@
                     app:layout_constraintTop_toBottomOf="@id/sliderViewPager" />
 
 
-
                 <TextView
                     android:id="@+id/textCocktailCategory"
                     android:layout_width="0dp"
@@ -190,8 +189,7 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@id/textName"
                     app:layout_constraintStart_toStartOf="@id/textName"
-                    app:layout_constraintTop_toBottomOf="@id/textName"
-                    />
+                    app:layout_constraintTop_toBottomOf="@id/textName" />
 
                 <TextView
                     android:id="@+id/textCocktailAlcoholic"
@@ -237,7 +235,7 @@
                     android:fontFamily="sans-serif-regular"
                     android:includeFontPadding="false"
                     android:maxLines="1"
-                    android:text= "@{cocktailDateModified}"
+                    android:text="@{cocktailDateModified}"
                     android:textColor="@color/colorTextSecondary"
                     android:textSize="@dimen/_12ssp"
                     android:visibility="gone"
@@ -253,12 +251,12 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:ellipsize="end"
-                    android:textColor= "@color/colorTextPrimary"
                     android:fontFamily="sans-serif-regular"
                     android:includeFontPadding="false"
                     android:lineSpacingExtra="@dimen/_2sdp"
                     android:maxLines="2"
                     android:text="@{instructions}"
+                    android:textColor="@color/colorTextPrimary"
                     app:layout_constraintTop_toBottomOf="@id/textCocktailDateModified" />
 
                 <TextView
@@ -284,8 +282,6 @@
                     android:background="@color/colorTextSecondary"
                     android:visibility="visible"
                     app:layout_constraintTop_toBottomOf="@id/textReadMore" />
-
-
 
 
                 <TextView
@@ -429,8 +425,6 @@
                     tools:ignore="MissingConstraints" />
 
 
-
-
                 <View
                     android:id="@+id/viewDivider2"
                     android:layout_width="match_parent"
@@ -443,11 +437,26 @@
                     app:layout_constraintTop_toBottomOf="@id/textIng8" />
 
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
+        <ImageView
+            android:id="@+id/imageTryedList"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/background_fab"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/ic_my_bar"
 
+
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/colorTextIcons" />
 
 
 
@@ -463,21 +472,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <ImageView
-            android:id="@+id/imageTryedList"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:background="@drawable/background_fab"
-            android:contentDescription="@string/app_name"
-            android:padding="@dimen/_8sdp"
-            android:src="@drawable/ic_my_bar"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/colorTextIcons"
-            android:layout_marginRight="@dimen/_20sdp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -14,15 +14,22 @@ import android.widget.Toast;
 import com.example.coctailapp.R;
 import com.example.coctailapp.adapters.ImageSliderAdapter;
 import com.example.coctailapp.databinding.ActivityDetailCoctailBinding;
+import com.example.coctailapp.models.Coctail;
 import com.example.coctailapp.responses.DetailCoctailResponse;
 import com.example.coctailapp.viewmodels.AlcoholicCoctailsViewModel;
 import com.example.coctailapp.viewmodels.DetailsCoctailViewModel;
+
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class DetailCoctailActivity extends AppCompatActivity {
 
     private ActivityDetailCoctailBinding activityDetailCoctailBinding;
     private DetailsCoctailViewModel detailsCoctailViewModel;
-    public static final String ID_DETAIL_COCkTAIL_ACTIVITY="com.example.coctailapp.activities.ID_DETAIL_COCkTAIL_ACTIVITY";
+    //public static final Coctail COCTAIL="com.example.coctailapp.activities.COCTAIL";
+    private Coctail coctail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,8 @@ public class DetailCoctailActivity extends AppCompatActivity {
     private void doInitializeation(){
         detailsCoctailViewModel = new ViewModelProvider(this).get(DetailsCoctailViewModel.class);
         activityDetailCoctailBinding.imageBack.setOnClickListener(v -> onBackPressed());
+
+        coctail = (Coctail) getIntent().getSerializableExtra("coctail");
         getDetailsCoctail();
     }
 
@@ -41,7 +50,7 @@ public class DetailCoctailActivity extends AppCompatActivity {
     private void getDetailsCoctail(){
         activityDetailCoctailBinding.setIsLoading(true);
         String[] sliderImages = new String[1];
-        String coctailId = String.valueOf(getIntent().getIntExtra(ID_DETAIL_COCkTAIL_ACTIVITY, -1));
+        String coctailId = String.valueOf(coctail.getId());
         detailsCoctailViewModel.getDetailsCoctail(coctailId).observe(
                 this, detailCoctailResponse -> {
                     activityDetailCoctailBinding.setIsLoading(false);
@@ -204,8 +213,16 @@ public class DetailCoctailActivity extends AppCompatActivity {
                         }
 
                         // fin ingredients bind
-                        //activityDetailCoctailBinding.add(detailsCoctailViewModel.addToTryedList(coctail))
-
+                        activityDetailCoctailBinding.imageTryedList.setOnClickListener(v ->
+                                new CompositeDisposable().add(detailsCoctailViewModel.addToTryedList(coctail)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(() -> {
+                                    activityDetailCoctailBinding.imageTryedList.setImageResource(R.drawable.ic_tryed);
+                                    Toast.makeText(getApplicationContext(), "added to cocktails tryed", Toast.LENGTH_SHORT).show();
+                                })
+                        ));
+                        activityDetailCoctailBinding.imageTryedList.setVisibility(View.VISIBLE);
 
                     }
                 }
