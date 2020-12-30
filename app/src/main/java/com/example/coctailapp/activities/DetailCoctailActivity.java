@@ -30,6 +30,7 @@ public class DetailCoctailActivity extends AppCompatActivity {
     private DetailsCoctailViewModel detailsCoctailViewModel;
     //public static final Coctail COCTAIL="com.example.coctailapp.activities.COCTAIL";
     private Coctail coctail;
+    private Boolean isCocktailAvailableInTryedList = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +42,21 @@ public class DetailCoctailActivity extends AppCompatActivity {
     private void doInitializeation(){
         detailsCoctailViewModel = new ViewModelProvider(this).get(DetailsCoctailViewModel.class);
         activityDetailCoctailBinding.imageBack.setOnClickListener(v -> onBackPressed());
-
         coctail = (Coctail) getIntent().getSerializableExtra("coctail");
+        checkCocktailinTryedList();
         getDetailsCoctail();
+    }
+
+    private void checkCocktailinTryedList() {
+        CompositeDisposable compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(detailsCoctailViewModel.getCocktailFromTryedList(String.valueOf(coctail.getId()))
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(coctail -> {
+                    isCocktailAvailableInTryedList = true;
+                    activityDetailCoctailBinding.imageTryedList.setImageResource(R.drawable.ic_tryed);
+                    compositeDisposable.dispose();
+                }));
     }
 
 
@@ -215,15 +228,30 @@ public class DetailCoctailActivity extends AppCompatActivity {
                         }
 
                         // fin ingredients bind
-                        activityDetailCoctailBinding.imageTryedList.setOnClickListener(v ->
-                                new CompositeDisposable().add(detailsCoctailViewModel.addToTryedList(coctail)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(() -> {
-                                    activityDetailCoctailBinding.imageTryedList.setImageResource(R.drawable.ic_tryed);
-                                    Toast.makeText(getApplicationContext(), "added to cocktails tryed", Toast.LENGTH_SHORT).show();
-                                })
-                        ));
+                        activityDetailCoctailBinding.imageTryedList.setOnClickListener(v -> {
+                            CompositeDisposable compositeDisposable = new CompositeDisposable();
+                            if (isCocktailAvailableInTryedList) {
+                                compositeDisposable.add(detailsCoctailViewModel.removeCocktailFromTryedList(coctail)
+                                        .subscribeOn(Schedulers.computation())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(() -> {
+                                            isCocktailAvailableInTryedList = false;
+                                            activityDetailCoctailBinding.imageTryedList.setImageResource(R.drawable.ic_delete);
+                                            Toast.makeText(getApplicationContext(), "Removed from tryed list", Toast.LENGTH_SHORT).show();
+                                        }));
+                            } else {
+                                compositeDisposable.add(detailsCoctailViewModel.addToTryedList(coctail)
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(() -> {
+                                            activityDetailCoctailBinding.imageTryedList.setImageResource(R.drawable.ic_tryed);
+                                            Toast.makeText(getApplicationContext(), "added to cocktails tryed", Toast.LENGTH_SHORT).show();
+                                            compositeDisposable.dispose();
+                                        })
+                                );
+                            }
+
+                        });
                         activityDetailCoctailBinding.imageTryedList.setVisibility(View.VISIBLE);
 
                     }

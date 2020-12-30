@@ -24,5 +24,8 @@ public interface CoctailDao {
     Completable addToTryedList(Coctail coctail);
 
     @Delete
-    void removeFromTryedList(Coctail coctail);
+    Completable removeFromTryedList(Coctail coctail);
+
+    @Query("SELECT * FROM COCTAILS WHERE id = :coctailId")
+    Flowable<Coctail> getCoctailFromTryedList(String coctailId);
 }

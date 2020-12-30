@@ -14,6 +14,7 @@ import com.example.coctailapp.repositories.DeatilsCoctailRepository;
 import com.example.coctailapp.responses.DetailCoctailResponse;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 
 public class DetailsCoctailViewModel extends AndroidViewModel {
 
@@ -33,5 +34,13 @@ public class DetailsCoctailViewModel extends AndroidViewModel {
 
     public Completable addToTryedList(Coctail coctail){
         return coctailDatabase.coctailDao().addToTryedList(coctail);
+    }
+
+    public Flowable<Coctail> getCocktailFromTryedList(String idCocktail){
+        return coctailDatabase.coctailDao().getCoctailFromTryedList(idCocktail);
+    }
+
+    public Completable removeCocktailFromTryedList(Coctail coctail){
+        return coctailDatabase.coctailDao().removeFromTryedList(coctail);
     }
 }

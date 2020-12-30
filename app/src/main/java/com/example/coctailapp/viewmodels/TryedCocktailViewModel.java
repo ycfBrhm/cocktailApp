@@ -4,16 +4,13 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.coctailapp.database.CoctailDatabase;
 import com.example.coctailapp.models.Coctail;
-import com.example.coctailapp.repositories.AlcoholicCoctailRepository;
-import com.example.coctailapp.responses.CoctailResponse;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 
 public class TryedCocktailViewModel extends AndroidViewModel {
@@ -27,6 +24,10 @@ public class TryedCocktailViewModel extends AndroidViewModel {
 
     public Flowable<List<Coctail>> loadTryedList(){
         return coctailDatabase.coctailDao().getTryedList();
+    }
+
+    public Completable removeCocktailFromTryedList(Coctail coctail){
+        return coctailDatabase.coctailDao().removeFromTryedList(coctail);
     }
 }
 

@@ -267,7 +267,7 @@
                     android:fontFamily="sans-serif-regular"
                     android:includeFontPadding="false"
                     android:maxLines="1"
-                    android:text="Ingredients"
+                    android:text="@string/ingredients"
                     android:textColor="@android:color/holo_green_light"
                     android:textSize="@dimen/_12ssp"
                     android:visibility="visible"
@@ -444,6 +444,35 @@
                     app:layout_constraintTop_toBottomOf="@id/textIng8" />
 
 
+                <TextView
+                    android:id="@+id/titleInstructions"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@string/instructions"
+                    android:textColor="@android:color/holo_green_light"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="@id/viewDivider2"
+                    app:layout_constraintStart_toStartOf="@id/viewDivider2"
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider2" />
+
+                <View
+                    android:id="@+id/viewDivider22"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@color/colorTextSecondary"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@id/titleInstructions" />
+
+
 
 
                 <TextView
@@ -460,7 +489,7 @@
                     android:maxLines="2"
                     android:text="@{instructions}"
                     android:textColor="@color/colorTextPrimary"
-                    app:layout_constraintTop_toBottomOf="@id/viewDivider2" />
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider22" />
 
                 <TextView
                     android:id="@+id/textReadMore"
@@ -474,6 +503,16 @@
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@id/textInstructions"
                     app:layout_constraintTop_toBottomOf="@id/textInstructions" />
+
+                <View
+                    android:id="@+id/viewDivider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="65dp"
+                    android:background="@color/colorTextSecondary"
+                    android:visibility="visible"
+                    app:layout_constraintTop_toBottomOf="@id/textReadMore"
+                    tools:layout_editor_absoluteX="10dp" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
