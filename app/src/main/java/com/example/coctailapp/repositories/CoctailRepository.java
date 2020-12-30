@@ -12,11 +12,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AlcoholicCoctailRepository {
+public class CoctailRepository {
 
     private ApiService apiService;
 
-    public AlcoholicCoctailRepository() {
+    public CoctailRepository() {
         apiService = ApiClient.getRetrofit().create(ApiService.class);
     }
 

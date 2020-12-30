@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase;
 import com.example.coctailapp.dao.CoctailDao;
 import com.example.coctailapp.models.Coctail;
 
-@Database(entities = Coctail.class, version = 1, exportSchema = false)
+@Database(entities = Coctail.class, version = 2, exportSchema = false)
 public abstract class CoctailDatabase extends RoomDatabase {
 
     private static CoctailDatabase coctailDatabase;
@@ -22,7 +22,7 @@ public abstract class CoctailDatabase extends RoomDatabase {
                     context,
                     CoctailDatabase.class,
                     "cocktails_db"
-            ).build();
+            ).fallbackToDestructiveMigration().build();
         }
         return coctailDatabase;
     }

@@ -17,7 +17,7 @@ import com.example.coctailapp.adapters.CoctailAdapter;
 import com.example.coctailapp.listeners.CoctailListener;
 import com.example.coctailapp.models.Coctail;
 import com.example.coctailapp.responses.CoctailResponse;
-import com.example.coctailapp.viewmodels.AlcoholicCoctailsViewModel;
+import com.example.coctailapp.viewmodels.CoctailsViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
 
 public abstract class MainBaseFragment extends Fragment implements CoctailListener,ContractMainFragment{
 
-    private AlcoholicCoctailsViewModel alCocViewModel;
+    private CoctailsViewModel alCocViewModel;
 
     private List<Coctail> coctails = new ArrayList<>();
     private CoctailAdapter coctailAdapter;
@@ -46,7 +46,7 @@ public abstract class MainBaseFragment extends Fragment implements CoctailListen
         recyclerView=getRecyclerView();
         recyclerView.setHasFixedSize(true);
         setLayoutManager();
-        alCocViewModel = new ViewModelProvider(this).get(AlcoholicCoctailsViewModel.class);
+        alCocViewModel = new ViewModelProvider(this).get(CoctailsViewModel.class);
         boolean isListFragment=isListFragment();
         coctailAdapter = new CoctailAdapter(coctails, this,isListFragment);
         recyclerView.setAdapter(coctailAdapter);
@@ -55,11 +55,22 @@ public abstract class MainBaseFragment extends Fragment implements CoctailListen
 
     public void getAlcohlicCoctails(){
         setIsLoading(true);
-        alCocViewModel.getAlcoholicCoctails("Alcoholic").observe(this, alcoholicCoctailsResponse ->{
+        alCocViewModel.getAlcoholicCoctails("a").observe(this, alcoholicCoctailsResponse ->{
             setIsLoading(false);
             setDataToAdapter(alcoholicCoctailsResponse);
         });
-        alCocViewModel.getAlcoholicCoctails("Non_Alcoholic").observe(this, this::setDataToAdapter);
+        setDataByFirstLetter();
+    }
+
+
+    public void setDataByFirstLetter() {
+        String letters[] = {"b", "c", "d", "e", "f", "g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","0"};
+
+        for (int i = 0; i < letters.length; i++) {
+            alCocViewModel.getAlcoholicCoctails(letters[i]).observe(this, this::setDataToAdapter);
+        }
+
+
     }
 
     public void setDataToAdapter(CoctailResponse cocktailResponse){

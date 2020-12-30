@@ -8,9 +8,13 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface ApiService {
-
+/*
     @GET("filter.php")
     Call<CoctailResponse> getAlcoholicCoctail(@Query("a") String alcohol);
+*/
+
+    @GET("search.php")
+    Call<CoctailResponse> getAlcoholicCoctail(@Query("f") String alcohol);
 
 
     @GET("lookup.php")

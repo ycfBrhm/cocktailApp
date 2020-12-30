@@ -15,11 +15,8 @@ import com.example.coctailapp.R;
 import com.example.coctailapp.adapters.ImageSliderAdapter;
 import com.example.coctailapp.databinding.ActivityDetailCoctailBinding;
 import com.example.coctailapp.models.Coctail;
-import com.example.coctailapp.responses.DetailCoctailResponse;
-import com.example.coctailapp.viewmodels.AlcoholicCoctailsViewModel;
 import com.example.coctailapp.viewmodels.DetailsCoctailViewModel;
 
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
