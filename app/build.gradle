@@ -72,4 +72,6 @@ dependencies {
     // Rounded Image View
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.1'
+
 }

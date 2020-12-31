@@ -233,7 +233,7 @@ public class DetailCoctailActivity extends AppCompatActivity {
                                         .observeOn(AndroidSchedulers.mainThread())
                                         .subscribe(() -> {
                                             isCocktailAvailableInTryedList = false;
-                                            activityDetailCoctailBinding.imageTryedList.setImageResource(R.drawable.ic_delete);
+                                            activityDetailCoctailBinding.imageTryedList.setImageResource(R.drawable.ic_my_bar);
                                             Toast.makeText(getApplicationContext(), "Removed from tryed list", Toast.LENGTH_SHORT).show();
                                         }));
                             } else {

@@ -124,20 +124,7 @@
             app:layout_constraintTop_toBottomOf="@id/textCocktailGlass" />
 
 
-        <ImageView
-            android:id="@+id/imageDelete"
-            android:layout_width="@dimen/_22sdp"
-            android:layout_height="@dimen/_22sdp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_delete"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/viewBackground"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textCocktailAlcoholic"
-            app:tint="@android:color/holo_red_light" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

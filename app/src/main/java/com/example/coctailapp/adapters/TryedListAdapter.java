@@ -66,12 +66,6 @@
              ItemContainerCoctailBinding itemContainerCoctailBinding=(ItemContainerCoctailBinding)itemBinding;
              itemContainerCoctailBinding.setCoctail(coctail);
              itemBinding.getRoot().setOnClickListener(view -> tryedListListener.onCocktailClicked(coctail));
-             itemContainerCoctailBinding.imageDelete.setOnClickListener(v -> tryedListListener.removeCocktailFromTryedList(coctail,getAdapterPosition()));
-             itemContainerCoctailBinding.imageDelete.setVisibility(View.VISIBLE);
-
-
-
-
 
          }
      }
